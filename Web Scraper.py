@@ -8,30 +8,28 @@ from urllib.request import urlopen as Req
 from bs4 import BeautifulSoup as soup
 
 
-# Declaring my_url variable as the desired url and then using urllib.request ("Req") to
-# download the desired url's web page and store it in the Scrapee variable
+# Declare my_url variable
 
 my_url = "https://www.carfax.com/Used-Honda-Civic-Type-R_t10063"
 
+# Load my_url contents into Scrapee variable
+
 Scrapee = Req(my_url)
 
-# With the Python object referenced as Scrapee, deploy .read() Python object method to download entire web page contents
-# and store in Scrapee_html variable
+# Extract html to variable Scrapee_html
 
 Scrapee_html = Scrapee.read()
 
-# Close the Scrapee file
+# Close web page
 
 Scrapee.close()
 
-#Transforming the Python object referenced as Scrapee_html into a Python object parsed by Beautiful Soup
-#functions to a new, better-organized Python object referenced as Scrapee_soup
+# Parse html into node tree and strip html tags, store as variable Scrapee_soup
 
 Scrapee_soup = soup(Scrapee_html, "html.parser")
 
 
-#Create three new Python objects, referenced as below, as subsets of the Python object referenced as Scrapee_soup
-#that contain the specific data to be viewed using the Beautiful Soup object method .findAll
+#Find matching class data and store into three variables
 
 Scrapee_soup_model = Scrapee_soup.findAll("span", {"class":"srp-list-item-basic-info-model"})
 
@@ -39,8 +37,7 @@ Scrapee_soup_price = Scrapee_soup.findAll("span", {"class":"srp-list-item-price"
 
 Scrapee_soup_location = Scrapee_soup.findAll("div", {"class":"srp-list-item-dealership-location"})
 
-#Use Beautiful Soup object method .text on above-refenced objects to strip out desired text and create list of strings
-# and store them in three variables
+#Strip html tags and store text into three variables and print
 
 for x in range(len(Scrapee_soup_model)):
     model_text = Scrapee_soup_model[x].text
@@ -48,24 +45,27 @@ for x in range(len(Scrapee_soup_model)):
     location_text = Scrapee_soup_location[x].text
     print(model_text, price_text, location_text)
 
-#Use regex to search for each price in Scrapee_soup_price object then strip out the commas and convert them to
-# integers and store in Python list object prices
+## Create empty list for use below
 
 prices = []
+
+# Find all prices and text in Scrapee_soup_price variable and store in prices list, remove commas for below calculation
 
 for x in range(len(Scrapee_soup_price)):
     m=re.search('([0-9]+\,[0-9]+)',str(Scrapee_soup_price[x].findAll(text=True)))
     if m:
        prices.append(int(m.group(0).replace(',', '')))
 
-# Use locale and statistics Python library functions to return an average price in prices list and format as
-# US currency
+# Calculate and return average price in prices list and format as US currency
 
 locale.setlocale(locale.LC_ALL, '')
 
 def Average(prices):
     return '${:,.2f}' .format(mean(prices))
 
+#Print blank line
+
 print()
 
+#Print average price
 print("The Average Price is: " + (Average(prices)))
