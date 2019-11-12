@@ -5,4 +5,6 @@ I wanted an uncluttered, data-heavy result telling me where all Honda Civic Type
 
 I am currently working to get this to populate to HTML easily for user-interactivity. In the meantime, please find a snapshot below of the console output.
 
+![Image of TypeRTracker Output in Console](images/PyCharm_Screenshot_11-12-19.png)
+
 
