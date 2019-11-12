@@ -1,6 +1,6 @@
 # typertracker
-This is a program I built in Python that helps me easily monitor the market for a Honda Civic Type R vehicle. The program pulls current listings for Honda Civic Type R vehicles for sale in the US and quickly returns only listing, price and location data. It then returns an average listing price.
+This project was built in Python using PyCharm IDE. 
 
-Through Python documentation, resources and tutorials I adapted a webscraper construct to build this program. I used PyCharme CE IDE which provides a virtual environment ("venv") of dependency libraries that I have not uploaded to github but are documented in the code as well as thorough commenting throughout.
+I wanted an uncluttered, data-heavy result telling me where all Honda Civic Type Rs are available for sale and then the average of those prices to give me a market value. I wanted to be able to "push a button" for this result, hence the Python software solution over a Google search.
 
-For those interested, this is a passion project as are most projects that I develop. The Honda Civic Type R is one of the greatest cars ever engineered and re-engineered.
+I am currently working to get this to populate to HTML easily for user-interactivity. In the meantime, please find a snapshot below of the console output.
